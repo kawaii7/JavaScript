@@ -8,17 +8,16 @@ JavaScript执行分为三步
 
 第三步,形参实参相统一,把实参赋到形参里面去,第四步,找函数声明,  把函数名作为 AO 对象属性名,AO 对象的值就是函数体,把之前的覆盖  
    
-
-     function test(a) {  
-          var a = 123;  
-          var b = 234;  
-          
-          function a() {  
-         }  
-          console.log(a)//123  
-        }  
-          
-        test(1)
+    function test(a) {  
+      var a = 123;  
+      var b = 234;  
+      
+      function a() {  
+     }  
+      console.log(a)//123  
+    }  
+      
+    test(1)
         
     第一步生成 AO  
     AO{ //第一步生成 AO  
