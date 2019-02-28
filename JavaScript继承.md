@@ -10,8 +10,7 @@
     }  
       
     Father.prototype.address = "shanghai";  
-    var Dad = new Father();  
-      
+    var Dad = new Father();   
       
     Son.prototype = Dad;  
     var son1 = new Son();  
