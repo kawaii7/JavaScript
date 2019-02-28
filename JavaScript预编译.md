@@ -1,4 +1,4 @@
-# JavaScriptt预编译
+# JavaScript预编译
 
 JavaScript执行分为三步  
 第一步语法分析,通篇扫描,检查有没有语法错误  
