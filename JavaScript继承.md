@@ -41,24 +41,24 @@
 **借用构造函数:在子类型构造函数的内部调用父类型构造函数。
 问题：借用构造函数继承父类型构造函数里的方法都在构造函数中定义, 因此函数复用就无从谈起了,而且父类型原型中的方法对子类型是不可见的**
 
-    function Father(hobby) {  
-      this.hobby = hobby;  
-    }  
-      
-    Father.prototype.address = "shanghai";  
-      
-    function Son() {  
-      Father.call(this, ["run", "basketball"])//可以传递参数  
-    }  
-      
-    Son.prototype = new Father();  
-    var son1 = new Son();  
-    var son2 = new Son();  
-    console.log(son1.hobby); //["run", "basketball"]  
-    console.log(son2.hobby); //["run", "basketball"]  
-    son2.hobby.push("drawing");  
-    console.log(son1.hobby); //["run", "basketball"]  
+    function Father(hobby) {
+        this.hobby = hobby;
+    }
+
+    Father.prototype.address = "shanghai";
+
+    function Son() {
+        Father.call(this, ["run", "basketball"])//可以传递参数
+    }
+
+    var son1 = new Son();
+    var son2 = new Son();
+    console.log(son1.hobby); //["run", "basketball"]
+    console.log(son2.hobby); //["run", "basketball"]
+    son2.hobby.push("drawing");
+    console.log(son1.hobby); //["run", "basketball"]
     console.log(son2.hobby); //["run", "basketball", "drawing"]
+    console.log(son1.address)//undefined
     
    **组合继承:将原型链和借用构造函数的技术组合到一块,这样既通过原型上定义的方法实现了函数复用,又能够保证每个实例都有它自己的属性**
 
