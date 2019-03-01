@@ -59,13 +59,38 @@
     son2.hobby.push("drawing");  
     console.log(son1.hobby); //["run", "basketball"]  
     console.log(son2.hobby); //["run", "basketball", "drawing"]
+    
+   **组合继承:将原型链和借用构造函数的技术组合到一块,这样既通过原型上定义的方法实现了函数复用,又能够保证每个实例都有它自己的属性**
 
-**公有继承:父类型原型赋值给子类型这种公有继承无法让子类型继承父类型构造函数里的属性, 只能继承原型里的方法**
+    Father.prototype.address = "shanghai";
+
+    function Father(height) {
+        this.height = height;
+    }
+
+    function Son() {
+        this.hobby = ["run", "basketball"];
+        Father.call(this, 175)
+    }
+
+    function inherit(Target, Origin) {
+        Target.prototype = new Origin;
+        Target.prototype.constructor=Target;
+    }
+
+    inherit(Son, Father);
+    var son1 = new Son();
+    var son2 = new Son();
+
+    son1.hobby.push("draw");
+    console.log(son1);//height: 175 hobby:["run", "basketball", "draw"]
+    console.log(son2);//height: 175 hobby:["run", "basketball"]
+
+**公有继承:父类型原型赋值给子类型这种公有继承无法让子类型继承父类型构造函数里的属性, 但是他们指向的是一个原型**
 
     Father.prototype.address = "shanghai";  
       
     function Father() {  
-      this.hobby = ["run", "basketball"];  
     }  
       
     function Son() {  
@@ -75,34 +100,14 @@
       Target.prototype = Origin.prototype;  
     }  
       
-    inherit(Son, Father);  
-    var son = new Son();  
+    inherit(Son, Father);
+    var son = new Son();
     console.log(son.address);  //shanghai
-    console.log(son.hobby);	   //undefined
-**组合构造函数和公有继承的方法:通过在原型上定义方法实现函数复用,又能够保证每个实例都有自己的属性**
+    Son.prototype.hobby = ["drawing"];
+    var Dad = new Father();
+    console.log(Dad.hobby)      //["drawing"]
+    
 
-    Father.prototype.address = "shanghai";  
-      
-    function Father(height) {  
-      this.height = height;  
-    }  
-      
-    function Son() {  
-      this.hobby = ["run", "basketball"];  
-      Father.call(this, 175)  
-    }  
-      
-    function inherit(Target, Origin) {  
-      Target.prototype = Origin.prototype;  
-    }  
-      
-    inherit(Son, Father);  
-    var son1 = new Son();  
-    var son2 = new Son();  
-      
-    son1.hobby.push("draw");  
-    console.log(son1);//height: 175 hobby:["run", "basketball", "draw"]  
-    console.log(son2);//height: 175 hobby:["run", "basketball"]
 
 **圣杯模式是将继承方法封装在一个立即执行函数里面,以函数 F 为一个中介层,让他继承父类型的原型,并将函数 F 的实例赋值给子类型的原型形成原型链,在外部调用立即执行函数。**
 
