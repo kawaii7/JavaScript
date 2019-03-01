@@ -86,7 +86,7 @@
     console.log(son1);//height: 175 hobby:["run", "basketball", "draw"]
     console.log(son2);//height: 175 hobby:["run", "basketball"]
 
-**公有继承:父类型原型赋值给子类型这种公有继承无法让子类型继承父类型构造函数里的属性, 但是他们指向的是一个原型**
+**公有继承:父类型原型赋值给子类型这种公有继承无法让子类型继承父类型构造函数里的属性, 但是他们指向的是一个原型,不能随便改动自己的原型**
 
     Father.prototype.address = "shanghai";  
       
