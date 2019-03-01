@@ -27,6 +27,7 @@ JavaScript执行分为三步
     fn(1)
    
   **预编译发生在函数执行的前一刻**
+  
 **1.创建AO对象(Activation Object 执行期上下文)**
 
 AO{
