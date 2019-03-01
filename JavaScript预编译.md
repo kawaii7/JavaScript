@@ -68,12 +68,12 @@ b:undefined
 
     function fn(a) {  
       console.log(a);//a{..}  *第一次拿a去AO里面拿*
-      var a = 123;  		  *把AO对象的a改成123*
+      var a = 123;  		  *执行到这一步把AO对象的a改成123*
       console.log(a)//123  
       function a() {  
      }  
       console.log(a)//123  
-      var b = function () {  *把AO里面b由undefined变成function(){}*
+      var b = function () {   *把AO里面b由undefined变成function(){}*
      }; 
       console.log(b)//(){..}  
     }  
